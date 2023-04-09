@@ -9,6 +9,7 @@ public class Main {
         startMenu();
 
         while (true) {
+            System.out.println("Enter your choice: ");
             System.out.println("1. Sign Up");
             System.out.println("2. Sign In");
             System.out.println("3. Admin Sign In");
@@ -21,9 +22,11 @@ public class Main {
                     break;
                 case 2:
                     signIn();
+//                    usersMenu();
                     break;
                 case 3:
                     adminSignIn();
+                    adminMenu();
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -32,17 +35,118 @@ public class Main {
         }
     }
 
+//    private static void usersMenu() {
+//        System.out.println("-----PASSENGER MENU OPTION-----");
+//        System.out.println("................................");
+//        System.out.println("Enter your choice: ");
+//        System.out.println("1-Change Password");
+//        System.out.println("2-Search Flight Ticket");
+//        System.out.println("3-Booking Ticket");
+//        System.out.println("4-Ticket Cancellation");
+//        System.out.println("5-Booked Tickets");
+//        System.out.println("6-Add charge");
+//        System.out.println("0-Sign out");
+//        int opt = scanner.nextInt() ;
+//        switch (opt){
+//            case 0 :
+//                signOut();
+//                break;
+//            case 1:
+//                changePasssword();
+//                break;
+//            case 2:
+//                searchflightTicket();
+//                break;
+//            case 3:
+//                bookingTicket();
+//                break;
+//            case 4:
+//                ticketCancellation();
+//                break;
+//            case 5:
+//                bookedtickets();
+//                break;
+//            case 6:
+//                addcharge();
+//                break;
+//            default:
+//                System.out.println("Invalid Input");
+//                break;
+//        }
+//
+//    }
+
     private static void adminSignIn() {
+        boolean check = false ;
         System.out.print("Enter Admin Username: ");
-        String username = scanner.nextLine();
+        String username = scanner.next();
 
         System.out.print("Enter Admin Password: ");
-        String password = scanner.nextLine();
+        String password = scanner.next();
         if (username.equals("mlsafa") && password.equals("12345"))
             System.out.println("Admin sign in successful");
         else {
-            System.out.println("Invalid input");
+            check = true ;
+            while (check) {
+                System.out.println("Invalid input , please re-enter :");
+                System.out.print("Enter Admin Username: ");
+                 username = scanner.next();
+
+                System.out.print("Enter Admin Password: ");
+                password = scanner.next();
+                if (username.equals("mlsafa") && password.equals("12345")) {
+                    System.out.println("Admin sign in successful");
+                    check = false;
+                }
+            }
         }
+    }
+
+    private static void adminMenu() {
+        System.out.println();
+        System.out.println();
+        System.out.println("-----ADMIN OPTION MENU-----");
+        System.out.println("............................");
+        System.out.println("Enter your choice: ");
+        System.out.println("1-Add");
+        System.out.println("2-Update");
+        System.out.println("3-Remove");
+        System.out.println("4-Flight Schedules");
+        System.out.println("0-Sign Out");
+
+        int option = scanner.nextInt();
+
+        switch (option){
+            case 0:
+                signOut();
+                break;
+            case 1:
+                addFlight();
+                break;
+            case 2:
+                updateFlight();
+                break;
+            case 3:
+                removeFlight();
+                break;
+            case 4:
+                flightSchedules();
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    private static void removeFlight() {
+    }
+    private static void addFlight() {
+    }
+
+    private static void updateFlight() {
+    }
+
+    private static void flightSchedules() {
     }
 
     static void signUp() {
@@ -61,7 +165,7 @@ public class Main {
 
     static void signOut() {
         System.out.println("Press '0' to sign out:");
-        String inputSignOut = scanner.nextLine();
+        String inputSignOut = scanner.next();
 
         if (inputSignOut.equalsIgnoreCase("0")) {
             System.out.println("Sign out successful!");
