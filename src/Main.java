@@ -1,125 +1,107 @@
 import java.util.* ;
 public class Main {
-    ////    static Scanner in = new Scanner(System.in);
-////    static userinfo[] info = new userinfo[500];
-////    // HashMap to store user information  ???????????????????????????????????????????????????????????
-    static HashMap<String, String> users = new HashMap<>();
-    public static void startMenu() {
-        System.out.println("WELCOME TO AIRLINE RESERVATION SYSTEM");
-        System.out.println("----------MENU OPTIONS----------");
-        System.out.println("Please choose an option:");
-        System.out.println();
-        System.out.println("1-Sign in");
-        System.out.println("2-Sign up");
-    }
-    public static void signUp() {
-        System.out.println("enter your username:");
-        String username;
-        username = in.nextLine();
-        while (users.containsKey(username)) {
-            System.out.println("That username is already taken. Please enter another username");
-            username = in.nextLine();
-        }
-        System.out.println("enter your password:");
-        String password;
-        password = in.nextLine();
-        while (users.containsKey(password)) {
-            System.out.println("That password is already taken. Please enter another password");
-            password = in.nextLine();
-        }
-        int a = 0;
-        info[a] = new userinfo();
-        info[a].setPassword(password);
-        info[a].setUsername(username);
-        a++;
-    }
+    static Scanner scanner = new Scanner(System.in);
 
-
-    public static void signIn() {
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("Please enter your username:");
-        String username = input.nextLine();
-
-        System.out.println("Please enter your password:");
-        String password = input.nextLine();
-
-        if (username.equals("mlsafa") && password.equals("malika03")){
-            adminMenu();
-        }
-        else if (users.containsKey(username) && users.get(username).equals(password)) {
-            System.out.println("Welcome, " + username + "!");
-        } else {
-            System.out.println("Incorrect username or password.");
-        }
-    }
-
-    private static void adminMenu() {
-
-    }
-
+    static User[] users = new User[100];
+    static int userCount = 0;
 
     public static void main(String[] args) {
-        startMenu() ;
-        Scanner in=new Scanner(System.in) ;
-        int entery = in.nextInt();
-        while (entery!=1 && entery!=2){
-            System.out.println("Please enter correct number");
-             entery = in.nextInt();
-            userinfo[] information = new userinfo[500];
-        }
-        switch(entery) {
-            case 1:
-                signIn();
-                break;
-            case 2:
-                signUp();
-                signIn();
-                break;
-        }
-    }
-
-
-
-}
-import java.util.HashMap;
-import java.util.Scanner;
-
-public class Main {
-
-    // HashMap to store user information
-    static HashMap<String, String> users = new HashMap<>();
-        static userinfo[] info = new userinfo[500];
-
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        startMenu();
 
         while (true) {
-            // Menu
-            System.out.println("Please choose an option:");
-            System.out.println("1. Sign In");
-            System.out.println("2. Sign Up");
-            System.out.println("3. Exit");
-
-            int choice = input.nextInt();
+            System.out.println("1. Sign Up");
+            System.out.println("2. Sign In");
+            System.out.println("3. Admin Sign In");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
-                    signIn();
-                    break;
-                case 2:
                     signUp();
                     break;
+                case 2:
+                    signIn();
+                    break;
                 case 3:
-                    System.out.println("Thank you for using our system.");
-                    System.exit(0);
+                    adminSignIn();
+                    break;
                 default:
-                    System.out.println("Invalid input. Please try again.");
+                    System.out.println("Invalid choice");
                     break;
             }
         }
     }
 
+    private static void adminSignIn() {
+        System.out.print("Enter Admin Username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter Admin Password: ");
+        String password = scanner.nextLine();
+        if (username.equals("mlsafa") && password.equals("12345"))
+            System.out.println("Admin sign in successful");
+        else {
+            System.out.println("Invalid input");
+        }
+    }
+
+    static void signUp() {
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+
+        User user = new User();
+        users[userCount] = user;
+        userCount++;
+
+        System.out.println("Registration successful");
+    }
+
+    static void signOut() {
+        System.out.println("Press '0' to sign out:");
+        String inputSignOut = scanner.nextLine();
+
+        if (inputSignOut.equalsIgnoreCase("0")) {
+            System.out.println("Sign out successful!");
+        } else {
+            System.out.println("Invalid input. Sign out failed.");
+        }
+    }
+
+    static void signIn() {
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+
+        boolean found = false;
+        for (User user : users) {
+            if (user == null) {
+                break;
+            }
+
+
+            if (username.equals(username) && password.equals(password)) {
+                System.out.println("Sign in successful");
+                found = true;
+                signOut();
+                break;
+            }
+        }
+
+        if (!found)
+            System.out.println("Invalid username or password");
+    }
+
+    public static void startMenu() {
+        System.out.println("WELCOME TO AIRLINE RESERVATION SYSTEM");
+        System.out.println("----------MENU OPTIONS----------");
+    }
+
 
 
 }
+
