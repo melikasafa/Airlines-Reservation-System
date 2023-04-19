@@ -34,47 +34,58 @@ public class FlightTable {
         table.add(flight);
     }
 
-    public void updateflight() {
-//        System.out.println("flight id of flight that you want to update :");
+    public void updateFlight() {
+        System.out.println("enter flightId :");
+        String flightId = in.nextLine();
+        for (Flight flight : table) {
+            if (flight.getFlightId().equals(flightId)) {
+
+                System.out.print("Enter flight origin: ");
+                String origin = in.next();
+                flight.setOrigin(origin);
+
+                System.out.print("Enter flight destination: ");
+                String destination = in.next();
+                flight.setDestination(destination);
+
+                System.out.print("Enter flight date: ");
+                String date = in.next();
+                flight.setDate(date);
+
+                System.out.print("Enter flight time: ");
+                String time = in.next();
+                flight.setTime(time);
+
+                System.out.print("Enter flight price: ");
+                float price = in.nextFloat();
+                flight.setPrice(price);
+
+                System.out.print("Enter flight seats: ");
+                int seats = in.nextInt();
+                flight.setSeats(seats);
+
+                System.out.println("The flight    " + flightId + " ...... updated!");
+
+            }
+        }
+    }
+
+    public void removeFlight() {
+//        Scanner input = new Scanner(System.in);
+//        System.out.println("flight id of flight that you want to remove :");
 //        String flightId;
-//        flightId = in.nextLine();
-//        for (Flight flight : flightTable();) {
+//        flightId = input.nextLine();
+//        for (Iterator<Flight> iterator = FlightTable.iterator(); iterator.hasNext();) {
+//            Flight flight = iterator.next();
 //            if (flight.getFlightId().equals(flightId)) {
-//
-//                System.out.print("Enter new origin: ");
-//                String origin = in.next();
-//                flight.setOrigin(origin);
-//
-//                System.out.print("Enter new destination: ");
-//                String destination = in.next();
-//                flight.setDestination(destination);
-//
-//                System.out.print("Enter new date: ");
-//                String date = in.next();
-//                flight.setDate(date);
-//
-//                System.out.print("Enter new time: ");
-//                String time = in.next();
-//                flight.setTime(time);
-//
-//                System.out.print("Enter new price: ");
-//                float price = in.nextFloat();
-//                flight.setPrice(price);
-//
-//                System.out.print("Enter new seats: ");
-//                int seats = in.nextInt();
-//                flight.setSeats(seats);
-//
-//                System.out.println("The flight with ID " + flightId + " has been updated!");
-////                return;
+//                iterator.remove();
 //            }
 //        }
     }
 
-    public void removeflight() {
-
-
-    }
+//    public static Iterator<Flight> iterator() {
+//        return FlightTable.iterator();
+//    }
 
 
     public void viewflightschedules() {

@@ -4,7 +4,7 @@ public class Flight {
     private String destination;
     private String date;
     private String time;
-    private double price;
+    private float price;
     private int seats;
 
     public Flight(String flightId, String origin, String destination, String date, String time, float price, int seats) {
