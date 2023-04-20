@@ -4,6 +4,8 @@ public class User {
     static Scanner scanner = new Scanner(System.in);
 
     static User[] users = new User[20];
+//private static ArrayList<User> users = new ArrayList<>();
+
     static int userCount = 0;
 
     private String username;
@@ -25,7 +27,15 @@ public class User {
         this.password = password;
     }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
+    public User() {
+        this.username = username;
+        this.password = password;
+    }
 
     public static void loginMenu() {
         while (true) {
@@ -42,6 +52,7 @@ public class User {
                     break;
                 case 2:
                     signIn();
+//                    usersMenu();
                     break;
                 case 3:
                     adminSignIn();
@@ -61,7 +72,7 @@ public class User {
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
 
-        User user = new User();
+        User user = new User(username,password);
         users[userCount] = user;
         userCount++;
 
@@ -81,7 +92,7 @@ public class User {
                 break;
             }
 
-            if (username.equals(username) && password.equals(password)) {
+            if (user.username.equals(username) && user.password.equals(password)) {
                 System.out.println("Sign in successful");
                 usersMenu();
                 found = true;
@@ -214,10 +225,11 @@ public class User {
 //        while (opt != 0) {
             switch (opt) {
                 case 0:
-                    exit = false;
+                    signOut();
                     break;
                 case 1:
                     changePassword();
+                    usersMenu();
                     break;
 //            case 2:
 //                searchFlightTicket();
@@ -231,9 +243,9 @@ public class User {
 //            case 5:
 //                bookedTickets();
 //                break;
-//            case 6:
-//                addcharge();
-//                break;
+            case 6:
+                addCharge();
+                break;
 //            default:
 //                System.out.println("Invalid Input");
 //                break;
@@ -242,6 +254,12 @@ public class User {
 //
             }
         }
+    }
+
+    private static void addCharge() {
+        System.out.println("Please enter amount of charge you want add to your account: ");
+        int charge  = scanner.nextInt();
+        System.out.println(charge + "added");
     }
 
 }

@@ -72,21 +72,10 @@ public class FlightTable {
     }
 
     public void removeFlight() {
-//        Scanner input = new Scanner(System.in);
-//        System.out.println("flight id of flight that you want to remove :");
-//        String flightId;
-//        flightId = input.nextLine();
-//        for (Iterator<Flight> iterator = FlightTable.iterator(); iterator.hasNext();) {
-//            Flight flight = iterator.next();
-//            if (flight.getFlightId().equals(flightId)) {
-//                iterator.remove();
-//            }
-//        }
+//        WX
     }
 
-//    public static Iterator<Flight> iterator() {
-//        return FlightTable.iterator();
-//    }
+
 
 
     public void viewflightschedules() {
