@@ -13,18 +13,25 @@ public class FlightTable {
         table.add(flight);
     }
 
+
+
     public void addflight() {
-        System.out.println(".........Add the flights..........");
+        System.out.println(".........add the flights..........");
         System.out.println("enter the flightId");
-        String flightId = in.nextLine();
+        String flightId;
+        flightId = in.nextLine();
         System.out.println("enter the origin");
-        String origin= in.nextLine();
+        String origin;
+        origin = in.nextLine();
         System.out.println("enter the destination");
-        String destination= in.nextLine();
+        String destination;
+        destination = in.nextLine();
         System.out.println("enter the date");
-        String date = in.nextLine();
+        String date;
+        date = in.nextLine();
         System.out.println("enter the time");
-        String time= in.nextLine();
+        String time;
+        time = in.nextLine();
         System.out.println("enter the price");
         float price;
         price = in.nextFloat();
@@ -33,6 +40,7 @@ public class FlightTable {
         seats = in.nextInt();
         Flight flight = new Flight(flightId, origin, destination, date, time, price, seats);
         table.add(flight);
+        System.out.println("Flight added");
     }
 
     public void updateFlight() {
@@ -72,29 +80,41 @@ public class FlightTable {
     }
 
     public void removeFlight() {
-//        WX
+        System.out.println("enter flightid: ");
+       String id = in.next();
+        System.out.println();
     }
 
 
 
 
-    public void viewflightschedules() {
+    public void viewFlightSchedules() {
         for (int i = 0; i < table.size(); i++) {
             System.out.println(table.get(i));
         }
     }
 
-    public void bookingTicket() {
-        System.out.println("enter your flightId");
-        String Id;
-        Id = in.nextLine();
-        for (int i = 0; i < table.size(); i++) {
 
-            Flight flight = table.get(i);
-            if (flight.getFlightId().equals(Id)) {
-                book.add(flight);
-                break;
+//    public void bookingTicket() {
+//        System.out.println(charge);
+//        Flight flight = new Flight(flightId, origin, destination, date, time, price, seats) ;
+//        System.out.println("enter your flightId");
+//        String Id;
+//        Id = in.nextLine();
+//        for (int i = 0; i < table.size(); i++) {
+//
+//            Flight flight = table.get(i);
+//            if (flight.getFlightId().equals(Id)) {
+//                book.add(flight);
+//                break;
+//            }
+//        }
+//    }
+
+    public void bookedTickets() {
+            for (int i = 0; i < book.size(); i++) {
+                System.out.println(book.get(i));
             }
         }
     }
-}
+

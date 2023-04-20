@@ -4,7 +4,6 @@ public class User {
     static Scanner scanner = new Scanner(System.in);
 
     static User[] users = new User[20];
-//private static ArrayList<User> users = new ArrayList<>();
 
     static int userCount = 0;
 
@@ -37,6 +36,8 @@ public class User {
         this.password = password;
     }
 
+
+
     public static void loginMenu() {
         while (true) {
             System.out.println("Enter your choice: ");
@@ -52,7 +53,6 @@ public class User {
                     break;
                 case 2:
                     signIn();
-//                    usersMenu();
                     break;
                 case 3:
                     adminSignIn();
@@ -171,7 +171,7 @@ public class User {
                 adminMenu();
                 break;
             case 4:
-                addtable.viewflightschedules();
+                addtable.viewFlightSchedules();
                 adminMenu();
                 break;
             default:
@@ -207,22 +207,24 @@ public class User {
     }
 
     private static void usersMenu() {
-        FlightTable passOption = new FlightTable();
+//        FlightTable passOption = new FlightTable();
         System.out.println("-----PASSENGER MENU OPTION-----");
         System.out.println("................................");
         System.out.println("Enter your choice: ");
         System.out.println("0-Sign out");
         System.out.println("1-Change Password");
 //        System.out.println("2-Search Flight Ticket");
-        System.out.println("3-Booking Ticket");
+//        System.out.println("3-Booking Ticket");
 //        System.out.println("4-Ticket Cancellation");
-//        System.out.println("5-Booked Tickets");
-//        System.out.println("6-Add charge");
+        System.out.println("5-Booked Tickets");
+        System.out.println("6-Add charge");
         int opt = scanner.nextInt();
 
         boolean exit = true;
+        float charge = 0;
+        FlightTable ticket = new FlightTable();
+
         while (exit) {
-//        while (opt != 0) {
             switch (opt) {
                 case 0:
                     signOut();
@@ -234,32 +236,39 @@ public class User {
 //            case 2:
 //                searchFlightTicket();
 //                break;
-            case 3:
-               passOption.bookingTicket();
-                break;
+//            case 3:
+//               passOption.bookingTicket();
+//                break;
 //            case 4:
 //                ticketCancellation();
 //                break;
-//            case 5:
-//                bookedTickets();
-//                break;
-            case 6:
-                addCharge();
+            case 5:
+                ticket.bookedTickets();
                 break;
-//            default:
-//                System.out.println("Invalid Input");
-//                break;
-//        }
-//}
-//
+            case 6:
+//                addCharge();
+                System.out.println("your charge is :  "+ charge);
+                System.out.println("Please enter amount of charge you want add to your account: ");
+                float newCharge  = scanner.nextInt();
+                System.out.println(newCharge + " added to your account");
+                charge +=newCharge ;
+                System.out.println("your charge is :  "+ charge);
+                break;
+            default:
+                System.out.println("Invalid Input");
+                break;
             }
         }
     }
 
-    private static void addCharge() {
-        System.out.println("Please enter amount of charge you want add to your account: ");
-        int charge  = scanner.nextInt();
-        System.out.println(charge + "added");
-    }
+//    private static void addCharge() {
+//        System.out.println("your charge is :  "+ charge);
+//        System.out.println("Please enter amount of charge you want add to your account: ");
+//        float newCharge  = scanner.nextInt();
+//        System.out.println(newCharge + " added to your account");
+//        charge +=newCharge ;
+//        System.out.println("your charge is :  "+ charge);
+//    }
+
 
 }
