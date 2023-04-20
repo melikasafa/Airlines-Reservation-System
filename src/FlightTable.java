@@ -2,6 +2,7 @@ import java.util.*;
 
 public class FlightTable {
     ArrayList<Flight> table = new ArrayList<>();
+    ArrayList<Flight> book = new ArrayList<>();
     Scanner in = new Scanner(System.in);
     public void flightTable() {
         Flight flight = new Flight("WX-12", "Yazd", "Tehran", "1402-12-10", "12:30", 700000, 51);
@@ -94,4 +95,17 @@ public class FlightTable {
         }
     }
 
+    public void bookingTicket() {
+        System.out.println("enter your flightId");
+        String Id;
+        Id = in.nextLine();
+        for (int i = 0; i < table.size(); i++) {
+
+            Flight flight = table.get(i);
+            if (flight.getFlightId().equals(Id)) {
+                book.add(flight);
+                break;
+            }
+        }
+    }
 }
