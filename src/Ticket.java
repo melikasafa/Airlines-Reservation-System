@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Ticket {
@@ -7,10 +8,8 @@ public class Ticket {
 
     public void bookingTicket() {
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter the id of the flight that you want to book ");
-        String id = in.nextLine();
-
-
+        System.out.println("Enter the id of the flight that you want to reserve: ");
+        String id = in.next();
 
         for (int i = 0; i < flights.row.size(); i++) {
             Flight flight = flights.row.get(i);
@@ -25,7 +24,7 @@ public class Ticket {
                         user.setCharge((float) (balance - cost));
                         bookedTicket.add(flight);
                         flight.setSeats(flight.getSeats()-1);
-                        System.out.println("reservation done.");
+                        System.out.println("reservation done." + "your ticket id is: " + ticketCode() );
                     }
                     else if (user.getCharge() < flight.getPrice()) {
                         System.out.println("your charge is not enough,Please charge your account: ");
@@ -49,6 +48,15 @@ public class Ticket {
 
     }
 
+    public int ticketCode() {
+        Random r = new Random();
+        int ticketId = r.nextInt(999999);
+        //   to creat 6-digit number .
+        while( ticketId<=99999){
+            ticketId = r.nextInt(999999);
+        }
+        return ticketId;
+    }
     public void CancellationTicket () {
         Scanner in = new Scanner(System.in);
         System.out.println("enter your ticketId");

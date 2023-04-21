@@ -225,7 +225,7 @@ public class User {
      System.out.println("0-Sign out");
      System.out.println("1-Change Password");
 //        System.out.println("2-Search Flight Ticket");
-     System.out.println("3-Booking Ticket")
+     System.out.println("3-Booking Ticket") ;
      System.out.println("4-Ticket Cancellation");
      System.out.println("5-Booked Tickets");
      System.out.println("6-Add charge");
@@ -270,7 +270,7 @@ public class User {
         signOut();
         }
 
-        
+
     public static void addCharge() {
         System.out.println("your charge is :  " + charge);
         System.out.println("Please enter amount of charge you want add to your account: ");
