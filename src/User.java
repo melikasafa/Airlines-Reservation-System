@@ -4,18 +4,23 @@ public class User {
     static Scanner scanner = new Scanner(System.in);
 
     static User[] users = new User[20];
-
     static int userCount = 0;
 
     private String username;
     private String password;
+    public static float charge;
+
+    public float getCharge() {
+        return charge;
+    }
+
+    public void setCharge(float charge) {
+        this.charge = charge;
+    }
+
 
     public String getUsername() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -53,6 +58,7 @@ public class User {
                     break;
                 case 2:
                     signIn();
+                    usersMenu();
                     break;
                 case 3:
                     adminSignIn();
@@ -73,10 +79,12 @@ public class User {
         String password = scanner.nextLine();
 
         User user = new User(username,password);
+        // save users in array ;
         users[userCount] = user;
         userCount++;
 
-        System.out.println("Registration successful");
+        System.out.println("Registration successful , please sign in");
+        System.out.println();
     }
 
     static void signIn() {
@@ -87,6 +95,7 @@ public class User {
         String password = scanner.next();
 
         boolean found = false;
+        //
         for (User user : users) {
             if (user == null) {
                 break;
@@ -94,7 +103,8 @@ public class User {
 
             if (user.username.equals(username) && user.password.equals(password)) {
                 System.out.println("Sign in successful");
-                usersMenu();
+                System.out.println();
+//                usersMenu();
                 found = true;
                 break;
             }
@@ -102,9 +112,19 @@ public class User {
 
         if (!found)
             System.out.println("Invalid username or password");
-        signIn();
     }
 
+    static void signOut() {
+        System.out.println("Press '0' to sign out:");
+        String inputSignOut = scanner.next();
+        if (inputSignOut.equalsIgnoreCase("0")) {
+            System.out.println("Sign out successful!");
+            System.out.println();
+        } else {
+            System.out.println("Invalid input. Sign out failed.");
+        }
+        loginMenu();
+    }
 
     public static void changePassword() {
         System.out.print("Enter your username: ");
@@ -128,18 +148,7 @@ public class User {
     }
 
 
-    static void signOut() {
-        System.out.println("Press '0' to sign out:");
-        String inputSignOut = scanner.next();
-        if (inputSignOut.equalsIgnoreCase("0")) {
-            System.out.println("Sign out successful!");
-        } else {
-            System.out.println("Invalid input. Sign out failed.");
-        }
-        loginMenu();
-    }
-
-    public static void adminMenu() {
+    public static void adminMenuOptions () {
         System.out.println();
         System.out.println();
         System.out.println("-----ADMIN OPTION MENU-----");
@@ -150,34 +159,38 @@ public class User {
         System.out.println("3-Remove");
         System.out.println("4-Flight Schedules");
         System.out.println("0-Sign Out");
+    }
+
+    public static void adminMenu() {
+        adminMenuOptions();
 
         int option = scanner.nextInt();
-        FlightTable addtable = new FlightTable();
-        addtable.flightTable();
-        switch (option) {
-            case 0:
-                signOut();
-                break;
-            case 1:
-                addtable.addflight();
-                adminMenu();
-                break;
-            case 2:
-                addtable.updateFlight();
-                adminMenu();
-                break;
-            case 3:
-                addtable.removeFlight();
-                adminMenu();
-                break;
-            case 4:
-                addtable.viewFlightSchedules();
-                adminMenu();
-                break;
-            default:
-                System.out.println("Invalid try again");
-                break;
+        FlightTable add = new FlightTable();
+        add.flightTable();
+
+        while(option!=0) {
+
+            switch (option) {
+                case 1:
+                    add.addFlight();
+                    break;
+                case 2:
+                    add.updateFlight();
+                    break;
+                case 3:
+                    add.removeFlight();
+                    break;
+                case 4:
+                    add.viewFlightSchedules();
+                    break;
+                default:
+                    System.out.println("Invalid try again");
+                    break;
+            }
+           adminMenuOptions();
+            option = scanner.nextInt();
         }
+        signOut();
     }
 
     public static void adminSignIn() {
@@ -205,70 +218,68 @@ public class User {
             }
         }
     }
-
-    private static void usersMenu() {
-//        FlightTable passOption = new FlightTable();
-        System.out.println("-----PASSENGER MENU OPTION-----");
-        System.out.println("................................");
-        System.out.println("Enter your choice: ");
-        System.out.println("0-Sign out");
-        System.out.println("1-Change Password");
+ public static void userMenuOption() {
+     System.out.println("-----PASSENGER MENU OPTION-----");
+     System.out.println("................................");
+     System.out.println("Enter your choice: ");
+     System.out.println("0-Sign out");
+     System.out.println("1-Change Password");
 //        System.out.println("2-Search Flight Ticket");
-//        System.out.println("3-Booking Ticket");
-//        System.out.println("4-Ticket Cancellation");
-        System.out.println("5-Booked Tickets");
-        System.out.println("6-Add charge");
+     System.out.println("3-Booking Ticket")
+     System.out.println("4-Ticket Cancellation");
+     System.out.println("5-Booked Tickets");
+     System.out.println("6-Add charge");
+ }
+    public static void usersMenu() {
+        userMenuOption();
+
         int opt = scanner.nextInt();
 
         boolean exit = true;
-        float charge = 0;
         FlightTable ticket = new FlightTable();
+        Ticket booked = new Ticket();
 
-        while (exit) {
+        while (opt!=0) {
+
             switch (opt) {
-                case 0:
-                    signOut();
-                    break;
                 case 1:
                     changePassword();
-                    usersMenu();
                     break;
 //            case 2:
 //                searchFlightTicket();
-//                break;
-//            case 3:
-//               passOption.bookingTicket();
-//                break;
-//            case 4:
-//                ticketCancellation();
-//                break;
-            case 5:
-                ticket.bookedTickets();
+////                break;
+            case 3:
+               booked.bookingTicket();
                 break;
-            case 6:
-//                addCharge();
-                System.out.println("your charge is :  "+ charge);
-                System.out.println("Please enter amount of charge you want add to your account: ");
-                float newCharge  = scanner.nextInt();
-                System.out.println(newCharge + " added to your account");
-                charge +=newCharge ;
-                System.out.println("your charge is :  "+ charge);
+            case 4:
+                booked.CancellationTicket();
                 break;
-            default:
-                System.out.println("Invalid Input");
-                break;
+                case 5:
+                    ticket.bookedTickets();
+                    break;
+                case 6:
+                    addCharge();
+                    break;
+                default:
+                    System.out.println("Invalid Input");
+                    break;
             }
+            userMenuOption();
+            opt = scanner.nextInt();
         }
-    }
+        signOut();
+        }
 
-//    private static void addCharge() {
-//        System.out.println("your charge is :  "+ charge);
-//        System.out.println("Please enter amount of charge you want add to your account: ");
-//        float newCharge  = scanner.nextInt();
-//        System.out.println(newCharge + " added to your account");
-//        charge +=newCharge ;
-//        System.out.println("your charge is :  "+ charge);
-//    }
+        
+    public static void addCharge() {
+        System.out.println("your charge is :  " + charge);
+        System.out.println("Please enter amount of charge you want add to your account: ");
+        float newCharge  = scanner.nextInt();
+        System.out.println(newCharge + " added to your account");
+        charge +=newCharge ;
+        System.out.println("your charge is :  "+ charge);
+        System.out.println();
+    }
 
 
 }

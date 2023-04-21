@@ -5,10 +5,8 @@ public class Main {
         System.out.println("WELCOME TO AIRLINE RESERVATION SYSTEM");
         System.out.println("----------MENU OPTIONS----------");
 
-        User users = new User();
         User.loginMenu();
     }
 
+
 }
-
-

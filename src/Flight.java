@@ -17,6 +17,16 @@ public class Flight {
         this.seats = seats;
     }
 
+    public Flight() {
+        this.flightId = flightId;
+        this.origin = origin;
+        this.destination = destination;
+        this.date = date;
+        this.time = time;
+        this.price = price;
+        this.seats = seats;
+    }
+
     public String getFlightId() {
         return flightId;
     }
@@ -57,7 +67,7 @@ public class Flight {
         this.time = time;
     }
 
-    public double getPrice() {
+    public  double  getPrice() {
         return price;
     }
 
